@@ -3,6 +3,7 @@
         <v-skeleton-loader
             type="article, card-image"
             :loading="loading"
+            class="mb-4"
         >
             <v-card
                 elevation="4"
@@ -10,13 +11,14 @@
                 class="pa-4"
             >
                 <v-card-title>
-                    {{datasets.judulBerita}}
+                    {{datasets.judul}}
                 </v-card-title>
                 <v-card-subtitle>
-                    {{getDate[0]}}
+                    {{datasets.jenis}}
                 </v-card-subtitle>
+                <hr>
                 <v-card-text>
-                    {{datasets.deskripsi}}
+                    {{getDate[0]}} - {{datasets.deskripsi}}
                 </v-card-text>
                 <v-img
                     height="auto"
@@ -34,7 +36,7 @@
 export default {
     props: ['datasets', 'loading'],
     data : () => ({
-        path: '/images/',
+        path: process.env.VUE_APP_IMAGE,
         created_at: '',
         time: '',
     }),

@@ -23,7 +23,7 @@
         class="elevation-1"
         item-class="text-truncate"
     >
-        <template v-slot:item.deskripsi="{ item }">
+        <template v-slot:[`item.deskripsi`]="{ item }">
             <span
                 class="d-inline-block text-truncate"
                 style="max-width: 150px;"
@@ -33,7 +33,7 @@
         </template>
 
 
-        <template v-slot:item.actions="{ item }">
+        <template v-slot:[`item.actions`]='{ item }'>
             <v-btn
                 color="primary"
             >
@@ -57,7 +57,7 @@
             </v-btn>
         </template>
 
-        <template v-slot:expanded-item="{ headers, item }">
+        <template v-slot:expanded-item="{ item }">
         <div class="row" style="width:600px">
             <div class="col-md-6 pa-4">
                 <h4 class="ml-2">Deskripsi</h4>
@@ -160,7 +160,7 @@
 </template>
 <script>
 
-// import {deleteNews, getNewsTable  } from "../../plugins/api";
+import {deleteBerita, getBeritaTable  } from "../../plugins/api";
 export default { 
 
     watch: {
@@ -169,7 +169,7 @@ export default {
       },
     },
     data: () => ({
-        path: '/images/',
+        path: process.env.VUE_APP_IMAGE,
         editData: '',
         editedItem: {},
         dataset: [],
@@ -183,7 +183,11 @@ export default {
             },
             {
                 text : "Judul Berita",
-                value : "judulBerita"
+                value : "judul"
+            },
+            {
+                text : "Jenis Berita",
+                value : "jenis"
             },
             {
                 text : "Deskripsi",
@@ -207,17 +211,15 @@ export default {
                 sortable: false 
             },
             { text: '', value: 'data-table-expand' },
-
-
         ],
         search: '',
     }),
     created() {
         this.loading = true;
-        //   getNewsTable().then((response) => {
-        //       // console.log(response);
-        //       this.dataset = response;
-        //   }).catch((err) => console.log(err))
+          getBeritaTable().then((response) => {
+              // console.log(response);
+              this.dataset = response;
+          }).catch((err) => console.log(err))
           this.loading = false;
     },
     methods: {
@@ -228,7 +230,7 @@ export default {
         },
         deleteBerita(item) {
             console.log(item);
-            // deleteNews(item);
+            deleteBerita(item);
             alert(`${item} telah dihapus`)
         },
         close(){

@@ -1,24 +1,29 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Beranda',
+    component: () => import('../views/Beranda')
+  },
+  {
+    path: '/surat',
+    name: 'Cetak surat',
+    component: () => import('../views/Surat')
+  },
+  {
+    path: '/Dashboard',
+    name: 'Admin',
+    component: () => import('../views/Home')
   },
   {
     path: '/Dashboard/:id',
-    name: 'Admin',
+    name: 'Dashboard Admin',
     component: () => import( '../views/Admin.vue')
-  },
-  {
-    path: '/Beranda',
-    name: 'Beranda',
-    component: () => import('../views/Beranda')
   },
 
 ]

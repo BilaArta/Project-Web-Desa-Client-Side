@@ -8,7 +8,7 @@
                 Input Berita
             </v-tab>
             <v-tab>
-                Option 3
+                Preview
             </v-tab>
 
             <v-tab-item>
@@ -28,7 +28,7 @@
             </v-tab-item>
             <v-tab-item>
                 <v-card flat>
-                    <div> Option 3</div>
+                    <div>Preview</div>
                 </v-card>
             </v-tab-item>
          </v-tabs>
