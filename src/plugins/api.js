@@ -96,17 +96,10 @@ export function getUser(){
     })
 }
 
-// async function get_user(response){
-//     if(!localStorage.getItem('token')){
-//         return
-//       }
-//     try{ 
-//     let response = await axios.get('user')
-//         commit('set_user', response.data.data)
-//     } catch (error){
-//         commit('reset_user') 
-//         removeHeaderToken()
-//         localStorage.removeItem('token')
-//         return error
-//     } 
-// }
+export function checkWarga(nik){
+    return new Promise((resolve, rejected) => {
+        axios.post('/warga', nik)
+            .then((res) => resolve(res.data))
+            .catch(err => rejected(err))
+    })
+}

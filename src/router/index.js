@@ -12,6 +12,11 @@ const routes = [
   },
   {
     path: '/surat',
+    name: 'Login Penduduk',
+    component: () => import('../views/LoginWarga')
+  },
+  {
+    path: '/surat/cetak/:id/:nama',
     name: 'Cetak surat',
     component: () => import('../views/Surat')
   },

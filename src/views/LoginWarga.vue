@@ -1,13 +1,13 @@
 <template>
-    <Surat></Surat>
+    <Login></Login>
 </template>
 
 <script>
-import Surat from "../components/User/Surat/Container";
+import Login from "../components/User/Surat/Login";
 
 export default {
     components: {
-        Surat
+        Login
     }
 }
 </script>
