@@ -1,13 +1,10 @@
 import Vue from 'vue'
 
-// import axios from 'axios'
 import vuetify from './plugins/vuetify';
 import router from './router'
 import { setHeaderToken } from "./utils/auth";
 
 import App from './App.vue'
-
-// axios.defaults.baseURL = 'http://localhost:8000/api/'
 
 Vue.config.productionTip = false
 
