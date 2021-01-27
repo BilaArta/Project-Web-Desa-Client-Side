@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve --mode local",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build-ghpages": "vue-cli-service build --mode ghpages"
+    "build-ghpages": "vue-cli-service build --mode ghpages",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "core-js": "^3.6.5",
