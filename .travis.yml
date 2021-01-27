@@ -9,7 +9,7 @@ script: npm run build-ghpages
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: 7c3c41578001b1f691e91f4f5bad386f0d862098
+  github_token: $GITHUB_TOKEN
   local_dir: dist
   on:
     branch: master
