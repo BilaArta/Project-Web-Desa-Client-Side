@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --mode local",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-ghpages": "vue-cli-service build --mode ghpages"
   },
   "dependencies": {
     "core-js": "^3.6.5",
