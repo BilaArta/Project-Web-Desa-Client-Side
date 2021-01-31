@@ -76,6 +76,7 @@ export default {
         judul: [],
         selectedJudul: '',
         selectedJenis: '',
+        breakPoint: "",
     }),
     methods : {
         onPageChange(){
@@ -144,6 +145,7 @@ export default {
     },
     created() {
         this.loading = true
+        // this.breakPoint = this.$vuetify.breakpoint.name
         this.getJudulAndJenis();
         getBerita(this.pagination.current)
             .then(data => {
@@ -151,9 +153,13 @@ export default {
                 this.pagination.total = data.last_page
                 this.news =  data.data  
                 this.loading = false
+                console.log(data.data);
             })
     },
     watch:{
+        breakPoint(){
+            console.log(this.$vuetify.breakpoint.name);
+        },
         selectedJenis(){
             console.log(this.selectedJenis);
             this.loading = true;
@@ -214,8 +220,8 @@ export default {
 .sticky-card {
   position: fixed;
   z-index: 1; 
-  width: 350px;
-  max-width: 350px;
+  width: 300px;
+  max-width: 300px;
 }
 
 </style>

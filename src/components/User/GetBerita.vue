@@ -16,9 +16,13 @@
                 <v-card-subtitle>
                     {{datasets.jenis}}
                 </v-card-subtitle>
-                <hr>
+                <hr class="mt-n3 mb-n2">
                 <v-card-text>
-                    {{getDate[0]}} - {{datasets.deskripsi}}
+                    <span>{{getDate[0]}} : {{getDate[1]}}</span>
+                    <br>
+                    <span class="black--text">
+                        {{datasets.deskripsi}}
+                    </span>
                 </v-card-text>
                 <v-img
                     height="auto"
@@ -37,24 +41,20 @@ export default {
     props: ['datasets', 'loading'],
     data : () => ({
         path: process.env.VUE_APP_IMAGE,
-        created_at: '',
-        time: '',
     }),
-
-    created:  function() {
-
-    },
     computed: {
         getDate:{
             get: function (){
                 if(this.datasets.created_at != null){
-                    return this.datasets.created_at.split('T')
+                    let date = this.datasets.created_at.split('T')
+                    let time = date[1].slice(3,8)
+                    date = date[0]
+                    return [date, time]
                 }
                 return [null]
             }
-        }
-        
-    }
+        }   
+    },
 }
 </script>
 

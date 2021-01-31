@@ -10,6 +10,18 @@
             <v-toolbar-title>WEBSITE DESA TIBUBIU</v-toolbar-title>
 
             <v-spacer></v-spacer>
+                <router-link to="/">
+                    <v-btn
+                        v-if="!token"
+                        elevation="4"
+                        small
+                        tile
+                        class="mr-2 ml-2 black--text"
+                        color="grey lighten-4"
+                    >
+                        Beranda              
+                    </v-btn>
+                </router-link>
                 <router-link to="/surat">
                     <v-btn
                         v-if="!token"
@@ -22,17 +34,6 @@
                         Cetak Surat
                     </v-btn>
                 </router-link>
-
-                <v-btn
-                    v-if="!token"
-                    elevation="4"
-                    small
-                    tile
-                    class="mr-2 ml-2 black--text"
-                    color="grey lighten-4"
-                >
-                    Menu - 2                
-                </v-btn>
                 <v-btn
                     v-if="token"
                     elevation="4"
@@ -69,5 +70,9 @@ export default {
 </script>
 
 <style>
+
+.v-toolbar__content a{
+    text-decoration: none;
+}   
 
 </style>

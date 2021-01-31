@@ -58,11 +58,35 @@ export function searchBeritaByJenisAndSorting(params, jenis, desc){
 
 // @End Return searching data
 
+export function sendMail(req){
+    return new Promise((resolve, rejected) => {
+        axios.post('send-mail', req)
+            .then(result => resolve(result))
+            .catch(err => rejected(err));
+    })
+}
+
+export function getCategories(){
+    return new Promise((resolve, rejected) => {
+        axios.get('categories')
+            .then(result => resolve(result))
+            .catch(err => rejected(err))
+    })
+}
+
 export function getBeritaTable(){ 
     return new Promise((resolve,reject) => {
         axios.get(`/allBerita`) 
             .then(result => resolve(result.data))
             .catch(err => reject(err)) 
+    })
+}
+
+export function inputBerita(news){
+    return new Promise((resolve,rejected) => {
+        axios.post('/berita', news)
+            .then(result => resolve(result.data))
+            .catch(err => rejected(err));
     })
 }
 

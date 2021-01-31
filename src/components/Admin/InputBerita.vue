@@ -22,22 +22,13 @@
                     v-model="news.deskripsi"
                 ></v-textarea>
                 <p class="text-h5">Jenis Berita</p>
-
-                <v-checkbox
-                    v-model="news.jenis"
-                    label="Sosial"
-                    value="0"
-                ></v-checkbox>
-                <v-checkbox
-                    v-model="news.jenis"
-                    label="Organisasi"
-                    value="1"
-                ></v-checkbox>
-                <v-checkbox
-                    v-model="news.jenis"
-                    label="Bansos"
-                    value="2"
-                ></v-checkbox>
+                    <v-select
+                        :items="jenis"
+                        v-model="news.jenis"
+                        label="Pilih jenis berita"
+                        dense
+                        filled
+                    ></v-select>
                 <hr>
                 <v-file-input
                     accept="image/png, image/jpeg, image/jpg"
@@ -70,6 +61,7 @@
 </template>
 
 <script>
+import {  getCategories, inputBerita } from "../../plugins/api";
 export default {
     data : () => ({
         news: {
@@ -77,28 +69,23 @@ export default {
             jenis: []
         },
         image : "",
-        image_name : "Choose file"
+        image_name : "Choose file",
+        jenis : []
     }),
     methods: {
         addNews() {
-            this.news.jenis = 1
-            // console.log(this.image);
-            // this.news.file = this.image
-            console.table(this.news.file);
             let data = new FormData;
             data.append('file', this.news.file);
             data.append('judulBerita', this.news.judul);
             data.append('deskripsi', this.news.deskripsi);
-            data.append('jenis', this.news.jenis);
-            
-            this.axios
-                .post(`${process.env.MIX_APP_URL}:8000/api/news`, data)
+            data.append('jenis', this.jenis.indexOf(this.news.jenis));
+
+            inputBerita(data)
                 .then(response => (
-                    // this.$router.push({name: 'home'})
-                    console.log(response.data)
+                    console.log(response)
                 ))
                 .catch(error => console.log(error))
-                // .finally(() => this.loading = false)
+                .finally(() => this.loading = false)
         },
         onImageChange(e) {
             // console.log(e);
@@ -117,6 +104,12 @@ export default {
             };
             reader.readAsDataURL(file);
         },
+    },
+    created() {
+        getCategories().then(result => {
+            console.log(result);
+            this.jenis = result.data.map((data) => data.name)
+        })
     }
 }
 </script>
